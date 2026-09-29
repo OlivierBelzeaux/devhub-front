@@ -1,59 +1,60 @@
-# DevhubFront
+# Snippet Library — frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+Interface Angular de **DevHub**, une application personnelle pour rechercher, consulter et organiser des snippets de code et des configurations.
 
-## Development server
+Le frontend consomme l’API Spring Boot du projet DevHub. La démo publique ne requiert pas de connexion et permet de tester le parcours complet de consultation.
 
-To start a local development server, run:
+## Fonctionnalités actuelles
 
-```bash
-ng serve
-```
+- Démo publique avec recherche, filtres par langage et tag, et pagination.
+- URL synchronisée avec les filtres de recherche.
+- Consultation détaillée d’un snippet et copie du code dans le presse-papiers.
+- Thème clair ou sombre conservé pendant la session du navigateur.
+- Interface construite avec Angular, PrimeNG et SCSS.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Prérequis
 
-## Code scaffolding
+- Node.js 22 et npm.
+- L’API DevHub disponible sur `http://localhost:8080`.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Démarrage local
 
 ```bash
-ng generate --help
+npm ci
+npm start
 ```
 
-## Building
+Ouvrir ensuite `http://localhost:4200`.
 
-To build the project run:
+L’application appelle l’API à l’adresse `http://localhost:8080/api`.
+
+## Démarrage avec Docker
+
+Le dépôt parent fournit un fichier Compose qui lance PostgreSQL, l’API et ce frontend :
 
 ```bash
-ng build
+docker compose up -d --build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+La variable `PRIMEUI_LICENSE_KEY` doit être définie dans le fichier `.env` du dépôt parent. Elle est injectée au démarrage du conteneur dans un fichier de configuration ignoré par Git.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Commandes utiles
 
 ```bash
-ng test
+npm run build
+npm test
 ```
 
-## Running end-to-end tests
+## Organisation du code
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+```text
+src/app/
+├── core/                 # Configuration API et thème
+├── features/demo/
+│   ├── data-access/      # Client HTTP de la démo
+│   ├── pages/            # Pages routées
+│   └── ui/               # Composants de présentation réutilisables
+└── app.*                 # Shell, navigation et routes
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Chaque composant possède ses fichiers TypeScript, HTML et SCSS dans son propre dossier.

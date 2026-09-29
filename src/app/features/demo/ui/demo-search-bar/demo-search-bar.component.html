@@ -1,0 +1,7 @@
+<form class="search-bar" [formGroup]="filters" (ngSubmit)="search()">
+  <input aria-label="Rechercher" pInputText formControlName="query" placeholder="Rechercher un snippet…" />
+  <p-select ariaLabel="Filtrer par langage" formControlName="language" [options]="languages" optionLabel="label" optionValue="value" placeholder="Tous les langages" />
+  <p-select ariaLabel="Filtrer par tag" formControlName="tag" [options]="tags()" placeholder="Tous les tags" [showClear]="true" />
+  <p-button type="submit" label="Rechercher" icon="pi pi-search" />
+  <p-button type="button" label="Réinitialiser" severity="secondary" [outlined]="true" (onClick)="reset()" />
+</form>

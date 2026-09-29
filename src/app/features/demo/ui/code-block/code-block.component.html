@@ -1,0 +1,11 @@
+<section class="code-block">
+  <p-button
+    class="copy-button"
+    [ariaLabel]="copied() ? 'Code copié dans le presse-papiers' : 'Copier le code dans le presse-papiers'"
+    [icon]="copied() ? 'pi pi-check' : 'pi pi-copy'"
+    [label]="copied() ? 'Copié' : 'Copier'"
+    severity="primary"
+    (onClick)="copy()"
+  />
+  <pre><code>{{ displayedCode() }}</code></pre>
+</section>

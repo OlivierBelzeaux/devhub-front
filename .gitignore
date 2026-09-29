@@ -11,8 +11,12 @@
 npm-debug.log
 yarn-error.log
 
+# Generated from PRIMEUI_LICENSE_KEY by the Docker entrypoint.
+/public/runtime-config.js
+
 # IDEs and editors
 .idea/
+*.iml
 .project
 .classpath
 .c9/

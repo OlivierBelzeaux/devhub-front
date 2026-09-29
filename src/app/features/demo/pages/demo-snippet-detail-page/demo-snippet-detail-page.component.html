@@ -1,0 +1,15 @@
+<p-button routerLink="/demo" label="Retour à la démo" icon="pi pi-arrow-left" severity="secondary" [outlined]="true" />
+
+@if (loading()) {
+  <div class="loading"><p-progress-spinner ariaLabel="Chargement du snippet" /></div>
+} @else if (error()) {
+  <p-message severity="error">{{ error() }}</p-message>
+} @else if (snippet(); as currentSnippet) {
+  <p-card [header]="currentSnippet.title" [subheader]="currentSnippet.language">
+    @if (currentSnippet.description) { <p>{{ currentSnippet.description }}</p> }
+    <app-code-block [code]="currentSnippet.content" />
+    <div class="tags">
+      @for (tag of currentSnippet.tags; track tag) { <p-tag [value]="tag" severity="secondary" /> }
+    </div>
+  </p-card>
+}

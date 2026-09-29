@@ -1,0 +1,14 @@
+<p-card [header]="snippet().title">
+  <div class="metadata"><span>Langage</span><p-tag [value]="snippet().language.toUpperCase()" severity="info" /></div>
+  <p>{{ snippet().description || 'Aucune description.' }}</p>
+  <app-code-block [code]="snippet().content" [previewLines]="3" />
+  @if (snippet().tags.length) {
+    <div class="tags" aria-label="Tags">
+      <span>Tags</span>
+      @for (tag of snippet().tags; track tag) { <p-tag [value]="tag" severity="secondary" /> }
+    </div>
+  }
+  <ng-template #footer>
+    <p-button [routerLink]="['/demo/snippets', snippet().id]" label="Consulter le snippet" icon="pi pi-arrow-right" severity="secondary" [outlined]="true" />
+  </ng-template>
+</p-card>

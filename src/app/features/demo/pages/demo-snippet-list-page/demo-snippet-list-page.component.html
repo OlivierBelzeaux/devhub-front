@@ -1,0 +1,21 @@
+<section>
+  <h1>Explorer la démo</h1>
+  <p>Consultez des snippets de code et des configurations publiés en lecture seule.</p>
+</section>
+
+@if (error()) {
+  <p-message severity="error">{{ error() }}</p-message>
+}
+
+@if (loading()) {
+  <div class="loading"><p-progress-spinner ariaLabel="Chargement des snippets" /></div>
+} @else if (page(); as snippetPage) {
+  @if (snippetPage.content.length) {
+    @for (snippet of snippetPage.content; track snippet.id) {
+      <app-snippet-card [snippet]="snippet" />
+    }
+    <p-paginator [first]="snippetPage.page * snippetPage.size" [rows]="snippetPage.size" [totalRecords]="snippetPage.totalElements" [rowsPerPageOptions]="[10, 20, 50]" (onPageChange)="changePage($event.page ?? 0, $event.rows ?? snippetPage.size)" />
+  } @else {
+    <p-card><p>Aucun snippet ne correspond aux filtres sélectionnés.</p></p-card>
+  }
+}
