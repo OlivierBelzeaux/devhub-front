@@ -26,6 +26,6 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    provideApiConfiguration({ baseUrl: 'http://localhost:8080/api' })
+    provideApiConfiguration({ baseUrl: runtimeConfiguration.apiBaseUrl ?? 'http://localhost:8080/api' })
   ]
 };

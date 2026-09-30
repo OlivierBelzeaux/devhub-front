@@ -35,6 +35,27 @@ Pour activer le bouton Contact hors Docker, créer `public/runtime-config.js` av
 window.__DEVHUB_RUNTIME_CONFIGURATION__ = { contactEmail: 'you@example.com' };
 ```
 
+## Déploiement gratuit sur Cloudflare Pages
+
+Créer un projet Pages relié au dépôt GitHub, puis définir :
+
+| Paramètre | Valeur |
+| --- | --- |
+| Branche de production | `main` |
+| Commande de build | `npm run build:cloudflare` |
+| Répertoire de sortie | `dist/devhub-front/browser` |
+| Version Node.js | `22` |
+
+Ajouter les variables d’environnement de build suivantes dans Cloudflare Pages :
+
+```text
+API_BASE_URL=https://<service-render>.onrender.com/api
+CONTACT_EMAIL=<adresse-publique-de-contact>
+PRIMEUI_LICENSE_KEY=<clé-PrimeNG-si-nécessaire>
+```
+
+Reporter ensuite l’URL Pages finale dans `CORS_ALLOWED_ORIGINS` de l’API Render. Le script `build:cloudflare` génère `runtime-config.js` au build ; aucune URL d’API n’est figée dans le code source.
+
 ## Démarrage avec Docker
 
 Le dépôt parent fournit un fichier Compose qui lance PostgreSQL, l’API et ce frontend :
