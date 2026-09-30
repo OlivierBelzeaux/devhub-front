@@ -35,18 +35,20 @@ Pour activer le bouton Contact hors Docker, créer `public/runtime-config.js` av
 window.__DEVHUB_RUNTIME_CONFIGURATION__ = { contactEmail: 'you@example.com' };
 ```
 
-## Déploiement gratuit sur Cloudflare Pages
+## Déploiement gratuit sur Cloudflare Workers
 
-Créer un projet Pages relié au dépôt GitHub, puis définir :
+Créer ou utiliser le Worker relié au dépôt GitHub. Le fichier `wrangler.jsonc` indique à Cloudflare de publier le résultat du build Angular comme fichiers statiques et de renvoyer `index.html` pour les routes Angular telles que `/demo/a-propos`.
+
+Dans **Settings > Builds**, définir :
 
 | Paramètre | Valeur |
 | --- | --- |
 | Branche de production | `main` |
 | Commande de build | `npm run build:cloudflare` |
-| Répertoire de sortie | `dist/devhub-front/browser` |
+| Commande de déploiement | `npx wrangler deploy` |
 | Version Node.js | `22` |
 
-Ajouter les variables d’environnement de build suivantes dans Cloudflare Pages :
+Ajouter les variables d’environnement de build suivantes dans Cloudflare Workers :
 
 ```text
 API_BASE_URL=https://<service-render>.onrender.com/api
@@ -54,7 +56,7 @@ CONTACT_EMAIL=<adresse-publique-de-contact>
 PRIMEUI_LICENSE_KEY=<clé-PrimeNG-si-nécessaire>
 ```
 
-Reporter ensuite l’URL Pages finale dans `CORS_ALLOWED_ORIGINS` de l’API Render. Le script `build:cloudflare` génère `runtime-config.js` au build ; aucune URL d’API n’est figée dans le code source.
+Reporter ensuite l’URL finale du Worker (par exemple `https://devhub-front.<compte>.workers.dev`) dans `CORS_ALLOWED_ORIGINS` de l’API Render, sans slash final. Le script `build:cloudflare` génère `runtime-config.js` au build ; aucune URL d’API n’est figée dans le code source.
 
 ## Démarrage avec Docker
 
