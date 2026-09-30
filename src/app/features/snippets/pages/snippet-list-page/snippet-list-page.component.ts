@@ -9,9 +9,8 @@ import { MessageModule } from 'primeng/message';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectModule } from 'primeng/select';
-import { TagModule } from 'primeng/tag';
 import { SnippetPage, SnippetQuery } from '../../../../core/models/snippet.model';
-import { CodeBlockComponent } from '../../../demo/ui/code-block/code-block.component';
+import { SnippetCardComponent } from '../../../demo/ui/snippet-card/snippet-card.component';
 import { SnippetService } from '../../data-access/snippet.service';
 import { TagService } from '../../data-access/tag.service';
 
@@ -24,7 +23,6 @@ interface LanguageOption {
   imports: [
     ButtonModule,
     CardModule,
-    CodeBlockComponent,
     InputTextModule,
     MessageModule,
     PaginatorModule,
@@ -32,7 +30,7 @@ interface LanguageOption {
     ReactiveFormsModule,
     RouterLink,
     SelectModule,
-    TagModule
+    SnippetCardComponent
   ],
   templateUrl: './snippet-list-page.component.html',
   styleUrl: './snippet-list-page.component.scss'

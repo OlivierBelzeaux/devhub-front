@@ -12,7 +12,7 @@
 } @else if (page(); as snippetPage) {
   @if (snippetPage.content.length) {
     @for (snippet of snippetPage.content; track snippet.id) {
-      <app-snippet-card [snippet]="snippet" />
+      <app-snippet-card [snippet]="snippet" [detailLink]="['/demo/snippets', snippet.id]" />
     }
     <p-paginator [first]="snippetPage.page * snippetPage.size" [rows]="snippetPage.size" [totalRecords]="snippetPage.totalElements" [rowsPerPageOptions]="[10, 20, 50]" (onPageChange)="changePage($event.page ?? 0, $event.rows ?? snippetPage.size)" />
   } @else {

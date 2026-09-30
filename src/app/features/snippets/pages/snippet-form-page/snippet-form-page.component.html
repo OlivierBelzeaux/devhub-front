@@ -2,9 +2,77 @@
 
 <section>
   <h1>{{ mode === 'edit' ? 'Modifier le snippet' : 'Nouveau snippet' }}</h1>
-  <p>Le formulaire partagé de création et de modification sera ajouté ici.</p>
+  <p>{{ mode === 'edit' ? 'Mettez à jour les informations de votre snippet.' : 'Enregistrez un nouveau snippet dans votre espace personnel.' }}</p>
 </section>
 
-<p-card>
-  <p>Il comprendra le titre, le langage, la description, le code et les tags.</p>
-</p-card>
+@if (loading()) {
+  <div class="loading"><p-progress-spinner ariaLabel="Chargement du snippet" /></div>
+} @else {
+  <p-card class="form-card">
+    @if (error()) {
+      <p-message severity="error">{{ error() }}</p-message>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label for="title">Titre</label>
+        <input id="title" pInputText formControlName="title" maxlength="255" />
+        @if (form.controls.title.touched && form.controls.title.hasError('required')) {
+          <small class="field-error">Le titre est obligatoire.</small>
+        } @else if (form.controls.title.touched && form.controls.title.hasError('maxlength')) {
+          <small class="field-error">Le titre ne peut pas dépasser 255 caractères.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="language">Langage</label>
+        <p-select inputId="language" formControlName="language" [options]="languages" optionLabel="label" optionValue="value" placeholder="Choisir un langage" />
+        @if (form.controls.language.touched && form.controls.language.invalid) {
+          <small class="field-error">Le langage est obligatoire.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="description">Description <span>optionnelle</span></label>
+        <textarea id="description" pTextarea formControlName="description" rows="3" maxlength="1000"></textarea>
+        @if (form.controls.description.touched && form.controls.description.hasError('maxlength')) {
+          <small class="field-error">La description ne peut pas dépasser 1 000 caractères.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="content">Code</label>
+        <textarea id="content" pTextarea formControlName="content" rows="14" spellcheck="false"></textarea>
+        @if (form.controls.content.touched && form.controls.content.invalid) {
+          <small class="field-error">Le code est obligatoire.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="tags">Tags <span>optionnels</span></label>
+        <p-autocomplete
+          inputId="tags"
+          formControlName="tags"
+          [suggestions]="filteredTags()"
+          [multiple]="true"
+          [forceSelection]="false"
+          [addOnTab]="true"
+          [addOnBlur]="true"
+          [unique]="true"
+          separator=","
+          placeholder="Choisir ou créer des tags"
+          (completeMethod)="filterTags($event.query)"
+        />
+        <small>Commencez à saisir pour choisir un tag existant. Utilisez une virgule, Tab ou quittez le champ pour créer un tag. Maximum 20 tags.</small>
+        @if (form.controls.tags.touched && tags().length > 20) {
+          <small class="field-error">Vous pouvez saisir au maximum 20 tags.</small>
+        }
+      </div>
+
+      <div class="actions">
+        <p-button type="submit" [label]="mode === 'edit' ? 'Enregistrer les modifications' : 'Créer le snippet'" [icon]="mode === 'edit' ? 'pi pi-save' : 'pi pi-plus'" [loading]="saving()" />
+        <p-button routerLink="/snippets" type="button" label="Annuler" severity="secondary" [outlined]="true" />
+      </div>
+    </form>
+  </p-card>
+}

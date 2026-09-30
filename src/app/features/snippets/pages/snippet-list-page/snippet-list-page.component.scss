@@ -9,11 +9,6 @@
 .search-bar p-select { flex: 1 1 12rem; min-width: 12rem; }
 .loading { display: flex; justify-content: center; padding: 3rem; }
 
-.metadata { align-items: center; color: var(--p-text-muted-color); display: flex; font-size: .875rem; gap: .5rem; margin-bottom: 1rem; }
-.metadata > span, .tags > span { font-weight: 600; }
-app-code-block { margin-top: 1rem; }
-.tags { align-items: center; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
-
 @media (max-width: 40rem) {
   .page-heading { align-items: stretch; flex-direction: column; }
 }

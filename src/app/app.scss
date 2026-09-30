@@ -1,4 +1,9 @@
 :host { display: block; }
+p-toolbar {
+  border: 0;
+  border-bottom: 1px solid var(--p-content-border-color);
+  border-radius: 0;
+}
 .brand { color: var(--p-primary-color); font-size: 1.25rem; font-weight: 700; text-decoration: none; }
 .application-content { display: grid; gap: 2rem; margin: 2rem auto; max-width: 70rem; padding: 0 1rem; }
 .toolbar-actions { align-items: center; display: flex; flex-wrap: wrap; gap: .5rem; }

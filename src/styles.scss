@@ -9,11 +9,11 @@
 }
 
 html.app-dark {
-  --app-background: #0b1120;
-  --app-text: #f8fafc;
-  --app-code-background: #0f172a;
-  --app-code-border: #334155;
-  --app-code-text: #f8fafc;
+  --app-background: #1c1c1c;
+  --app-text: #dadada;
+  --app-code-background: #242424;
+  --app-code-border: #555555;
+  --app-code-text: #dadada;
 }
 
 html {
@@ -24,4 +24,46 @@ body {
   margin: 0;
   background: var(--app-background);
   color: var(--app-text);
+}
+
+.language-tag {
+  --p-tag-primary-background: color-mix(in srgb, var(--p-primary-500), transparent 72%);
+  --p-tag-primary-color: var(--p-primary-700);
+}
+
+.snippet-tag {
+  --p-tag-secondary-background: color-mix(in srgb, var(--p-primary-500), transparent 88%);
+  --p-tag-secondary-color: var(--p-primary-700);
+}
+
+.p-button.p-button-secondary.p-button-outlined:hover {
+  background: color-mix(in srgb, var(--p-primary-500), transparent 92%);
+  border-color: var(--p-primary-500);
+  color: var(--p-primary-700);
+}
+
+.p-button.p-button-secondary.p-button-outlined:active {
+  background: color-mix(in srgb, var(--p-primary-500), transparent 84%);
+}
+
+html.app-dark {
+  .language-tag {
+    --p-tag-primary-background: color-mix(in srgb, var(--p-primary-500), transparent 65%);
+    --p-tag-primary-color: var(--p-primary-200);
+  }
+
+  .snippet-tag {
+    --p-tag-secondary-background: color-mix(in srgb, var(--p-primary-500), transparent 84%);
+    --p-tag-secondary-color: var(--p-primary-300);
+  }
+
+  .p-button.p-button-secondary.p-button-outlined:hover {
+    background: color-mix(in srgb, var(--p-primary-500), transparent 84%);
+    border-color: var(--p-primary-400);
+    color: var(--p-primary-200);
+  }
+
+  .p-button.p-button-secondary.p-button-outlined:active {
+    background: color-mix(in srgb, var(--p-primary-500), transparent 72%);
+  }
 }

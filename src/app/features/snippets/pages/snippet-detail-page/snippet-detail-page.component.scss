@@ -1,0 +1,15 @@
+:host { display: grid; gap: 1rem; }
+
+.loading { display: flex; justify-content: center; padding: 3rem; }
+.metadata { margin-bottom: 1rem; }
+.description { margin: 0; }
+.description + app-code-block { margin-top: 1rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+
+p-card { border-left: 3px solid color-mix(in srgb, var(--p-primary-500), transparent 55%); }
+.snippet-footer { align-items: center; border-top: 1px solid var(--p-content-border-color); color: var(--p-text-muted-color); display: flex; font-size: .8125rem; gap: 1rem; justify-content: space-between; padding-top: 1rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+@media (max-width: 40rem) {
+  .snippet-footer { align-items: flex-start; flex-direction: column; }
+}

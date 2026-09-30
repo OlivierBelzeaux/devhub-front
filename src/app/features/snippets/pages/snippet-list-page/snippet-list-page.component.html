@@ -23,17 +23,7 @@
 } @else if (page(); as snippetPage) {
   @if (snippetPage.content.length) {
     @for (snippet of snippetPage.content; track snippet.id) {
-      <p-card [header]="snippet.title">
-        <div class="metadata"><span>Langage</span><p-tag [value]="snippet.language.toUpperCase()" severity="info" /></div>
-        <p>{{ snippet.description || 'Aucune description.' }}</p>
-        <app-code-block [code]="snippet.content" [previewLines]="3" />
-        @if (snippet.tags.length) {
-          <div class="tags" aria-label="Tags">
-            <span>Tags</span>
-            @for (tag of snippet.tags; track tag) { <p-tag [value]="tag" severity="secondary" /> }
-          </div>
-        }
-      </p-card>
+      <app-snippet-card [snippet]="snippet" [detailLink]="['/snippets', snippet.id]" />
     }
     <p-paginator [first]="snippetPage.page * snippetPage.size" [rows]="snippetPage.size" [totalRecords]="snippetPage.totalElements" [rowsPerPageOptions]="[10, 20, 50]" (onPageChange)="changePage($event.page ?? 0, $event.rows ?? snippetPage.size)" />
   } @else {

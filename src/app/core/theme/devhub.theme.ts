@@ -2,38 +2,46 @@ import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
 
 /**
- * Blue is a familiar convention for primary actions on the web. The rest of
- * the palette deliberately stays with Aura's accessible neutral surfaces.
+ * An electric orange accent provides a clear interactive contrast over the
+ * neutral graphite surfaces used throughout dark mode.
  */
 export const DevHubTheme = definePreset(Aura, {
   semantic: {
     primary: {
-      50: '#EFF6FF',
-      100: '#DBEAFE',
-      200: '#BFDBFE',
-      300: '#93C5FD',
-      400: '#60A5FA',
-      500: '#3B82F6',
-      600: '#2563EB',
-      700: '#1D4ED8',
-      800: '#1E40AF',
-      900: '#1E3A8A',
-      950: '#172554'
+      50: '#FFF7ED',
+      100: '#FFEDD5',
+      200: '#FED7AA',
+      300: '#FDBA74',
+      400: '#FB923C',
+      500: '#FF7A00',
+      600: '#EA580C',
+      700: '#C2410C',
+      800: '#9A3412',
+      900: '#7C2D12',
+      950: '#431407'
     },
     colorScheme: {
+      light: {
+        primary: {
+          contrastColor: '#1c1c1c'
+        }
+      },
       dark: {
+        primary: {
+          contrastColor: '#1c1c1c'
+        },
         surface: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#172033',
-          950: '#0f172a'
+          50: '#fcfcfc',
+          100: '#fafafa',
+          200: '#f6f6f6',
+          300: '#e4e4e4',
+          400: '#bdbdbd',
+          500: '#ababab',
+          600: '#999999',
+          700: '#666666',
+          800: '#3f3f3f',
+          900: '#2e2e2e',
+          950: '#242424'
         }
       }
     }

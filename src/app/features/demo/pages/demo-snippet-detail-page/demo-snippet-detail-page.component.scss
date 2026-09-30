@@ -9,9 +9,15 @@
   padding: 3rem;
 }
 
+.metadata { margin-bottom: 1rem; }
+.description { margin: 0; }
+.description + app-code-block { margin-top: 1rem; }
+
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
   margin-top: 1.25rem;
 }
+
+p-card { border-left: 3px solid color-mix(in srgb, var(--p-primary-500), transparent 55%); }

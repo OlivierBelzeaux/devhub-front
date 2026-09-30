@@ -1,4 +1,15 @@
 :host { display: grid; gap: 1.5rem; }
 
 section h1 { margin: 0 0 .5rem; }
-section p, p-card p { margin: 0; }
+section p { margin: 0; }
+
+.form-card { max-width: 52rem; }
+form { display: grid; gap: 1.25rem; }
+.field { display: grid; gap: .5rem; }
+label { font-weight: 600; }
+label span, .field > small:not(.field-error) { color: var(--p-text-muted-color); font-weight: 400; }
+input, p-autocomplete, p-select, textarea { width: 100%; }
+textarea { font-family: 'JetBrains Mono', monospace; resize: vertical; }
+.field-error { color: var(--p-red-500); }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .25rem; }
+.loading { display: flex; justify-content: center; padding: 3rem; }

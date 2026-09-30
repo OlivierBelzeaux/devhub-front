@@ -1,0 +1,28 @@
+<p-button routerLink="/snippets" label="Retour à mes snippets" icon="pi pi-arrow-left" severity="secondary" [outlined]="true" />
+<p-confirmdialog />
+
+@if (loading()) {
+  <div class="loading"><p-progress-spinner ariaLabel="Chargement du snippet" /></div>
+} @else if (error()) {
+  <p-message severity="error">{{ error() }}</p-message>
+} @else if (snippet(); as currentSnippet) {
+  <p-card [header]="currentSnippet.title">
+    <div class="metadata"><p-tag class="language-tag" [value]="currentSnippet.language.toUpperCase()" /></div>
+    @if (currentSnippet.description) { <p class="description">{{ currentSnippet.description }}</p> }
+    <app-code-block [code]="currentSnippet.content" />
+    @if (currentSnippet.tags.length) {
+      <div class="tags" aria-label="Tags">
+        @for (tag of currentSnippet.tags; track tag) { <p-tag class="snippet-tag" [value]="tag" severity="secondary" /> }
+      </div>
+    }
+    <ng-template #footer>
+      <div class="snippet-footer">
+        <span>Gérez ce snippet depuis votre espace personnel.</span>
+        <div class="actions">
+          <p-button [routerLink]="['/snippets', currentSnippet.id, 'edit']" label="Modifier le snippet" icon="pi pi-pencil" />
+          <p-button label="Supprimer" icon="pi pi-trash" severity="danger" [outlined]="true" [loading]="deleting()" (onClick)="confirmDelete(currentSnippet.id)" />
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
+}

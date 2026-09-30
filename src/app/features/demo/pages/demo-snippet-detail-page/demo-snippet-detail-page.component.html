@@ -5,11 +5,12 @@
 } @else if (error()) {
   <p-message severity="error">{{ error() }}</p-message>
 } @else if (snippet(); as currentSnippet) {
-  <p-card [header]="currentSnippet.title" [subheader]="currentSnippet.language">
-    @if (currentSnippet.description) { <p>{{ currentSnippet.description }}</p> }
+  <p-card [header]="currentSnippet.title">
+    <div class="metadata"><p-tag class="language-tag" [value]="currentSnippet.language.toUpperCase()" /></div>
+    @if (currentSnippet.description) { <p class="description">{{ currentSnippet.description }}</p> }
     <app-code-block [code]="currentSnippet.content" />
     <div class="tags">
-      @for (tag of currentSnippet.tags; track tag) { <p-tag [value]="tag" severity="secondary" /> }
+      @for (tag of currentSnippet.tags; track tag) { <p-tag class="snippet-tag" [value]="tag" severity="secondary" /> }
     </div>
   </p-card>
 }

@@ -9,6 +9,7 @@ export const routes: Routes = [
   { path: 'snippets', canActivate: [authGuard], loadComponent: () => import('./features/snippets/pages/snippet-list-page/snippet-list-page.component').then(component => component.SnippetListPageComponent) },
   { path: 'snippets/new', canActivate: [authGuard], loadComponent: () => import('./features/snippets/pages/snippet-form-page/snippet-form-page.component').then(component => component.SnippetFormPageComponent), data: { mode: 'create' } },
   { path: 'snippets/:id/edit', canActivate: [authGuard], loadComponent: () => import('./features/snippets/pages/snippet-form-page/snippet-form-page.component').then(component => component.SnippetFormPageComponent), data: { mode: 'edit' } },
+  { path: 'snippets/:id', canActivate: [authGuard], loadComponent: () => import('./features/snippets/pages/snippet-detail-page/snippet-detail-page.component').then(component => component.SnippetDetailPageComponent) },
   { path: '', pathMatch: 'full', redirectTo: 'demo' },
   { path: '**', redirectTo: 'demo' }
 ];

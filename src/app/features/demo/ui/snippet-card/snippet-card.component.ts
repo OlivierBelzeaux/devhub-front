@@ -13,5 +13,6 @@ import { CodeBlockComponent } from '../code-block/code-block.component';
   styleUrl: './snippet-card.component.scss'
 })
 export class SnippetCardComponent {
-  readonly snippet = input.required<Snippet>();
+  public readonly snippet = input.required<Snippet>();
+  public readonly detailLink = input.required<string[]>();
 }
