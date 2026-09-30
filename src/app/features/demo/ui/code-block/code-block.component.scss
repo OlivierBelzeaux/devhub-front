@@ -3,15 +3,15 @@
 }
 
 .code-block {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--app-code-background);
+  border: 1px solid var(--app-code-border);
   border-radius: var(--p-content-border-radius);
   overflow: hidden;
   position: relative;
 }
 
 pre {
-  color: #f8fafc;
+  color: var(--app-code-text);
   margin: 0;
   overflow-x: auto;
   padding: 3.5rem 1rem 1rem;

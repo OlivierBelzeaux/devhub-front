@@ -1,16 +1,27 @@
 @import "primeicons/primeicons.css";
 
+:root {
+  --app-background: #f8fafc;
+  --app-text: #0f172a;
+  --app-code-background: #1e293b;
+  --app-code-border: #334155;
+  --app-code-text: #f8fafc;
+}
+
+html.app-dark {
+  --app-background: #0f172a;
+  --app-text: #f8fafc;
+  --app-code-background: #1e293b;
+  --app-code-border: #475569;
+  --app-code-text: #f8fafc;
+}
+
 html {
   font-family: Inter, system-ui, sans-serif;
 }
 
 body {
   margin: 0;
-  background: #f8fafc;
-  color: #0f172a;
-}
-
-html.app-dark body {
-  background: #0f172a;
-  color: #f8fafc;
+  background: var(--app-background);
+  color: var(--app-text);
 }
