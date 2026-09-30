@@ -7,8 +7,6 @@
 .search-bar { align-items: center; display: flex; flex-wrap: wrap; gap: .75rem; }
 .search-bar input { flex: 2 1 18rem; }
 .search-bar p-select { flex: 1 1 12rem; min-width: 12rem; }
-.loading { display: flex; justify-content: center; padding: 3rem; }
-
 @media (max-width: 40rem) {
   .page-heading { align-items: stretch; flex-direction: column; }
 }

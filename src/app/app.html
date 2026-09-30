@@ -8,6 +8,8 @@
         <p-button routerLink="/snippets" label="Mes snippets" icon="pi pi-book" severity="secondary" [outlined]="true" />
       } @else {
         <p-button routerLink="/demo" label="Démo publique" icon="pi pi-compass" severity="secondary" [outlined]="true" />
+        <p-button routerLink="/demo/a-propos" label="À propos" icon="pi pi-info-circle" severity="secondary" [outlined]="true" />
+        <p-button label="Contact" icon="pi pi-envelope" severity="secondary" [outlined]="true" (onClick)="contact.openMailClient()" />
       }
       <p-button
         [icon]="theme.isDark() ? 'pi pi-sun' : 'pi pi-moon'"

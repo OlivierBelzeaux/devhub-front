@@ -1,18 +1,19 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { MessageModule } from 'primeng/message';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { Snippet } from '../../../../core/models/snippet.model';
 import { CodeBlockComponent } from '../../../demo/ui/code-block/code-block.component';
 import { SnippetService } from '../../data-access/snippet.service';
+import { ErrorStateComponent } from '../../../../shared/ui/error-state/error-state.component';
+import { LoadingStateComponent } from '../../../../shared/ui/loading-state/loading-state.component';
 
 @Component({
-  imports: [ButtonModule, CardModule, CodeBlockComponent, ConfirmDialogModule, MessageModule, ProgressSpinnerModule, RouterLink, TagModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ButtonModule, CardModule, CodeBlockComponent, ConfirmDialogModule, ErrorStateComponent, LoadingStateComponent, RouterLink, TagModule],
   providers: [ConfirmationService],
   templateUrl: './snippet-detail-page.component.html',
   styleUrl: './snippet-detail-page.component.scss'

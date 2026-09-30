@@ -1,16 +1,17 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { MessageModule } from 'primeng/message';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { Snippet } from '../../../../core/models/snippet.model';
 import { DemoSnippetApiService } from '../../data-access/demo-snippet-api.service';
 import { CodeBlockComponent } from '../../ui/code-block/code-block.component';
+import { ErrorStateComponent } from '../../../../shared/ui/error-state/error-state.component';
+import { LoadingStateComponent } from '../../../../shared/ui/loading-state/loading-state.component';
 
 @Component({
-  imports: [ButtonModule, CardModule, CodeBlockComponent, MessageModule, ProgressSpinnerModule, RouterLink, TagModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ButtonModule, CardModule, CodeBlockComponent, ErrorStateComponent, LoadingStateComponent, RouterLink, TagModule],
   templateUrl: './demo-snippet-detail-page.component.html',
   styleUrl: './demo-snippet-detail-page.component.scss'
 })
@@ -21,7 +22,7 @@ export class DemoSnippetDetailPageComponent implements OnInit {
 
   constructor(private readonly route: ActivatedRoute, private readonly demoSnippetApi: DemoSnippetApiService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
       this.error.set('Identifiant de snippet manquant.');

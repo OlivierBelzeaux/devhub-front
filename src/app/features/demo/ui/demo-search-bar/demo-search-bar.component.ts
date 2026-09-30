@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,13 +6,10 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { DemoSnippetApiService } from '../../data-access/demo-snippet-api.service';
-
-interface LanguageOption {
-  label: string;
-  value: string;
-}
+import { LANGUAGE_FILTER_OPTIONS, LanguageOption } from '../../../../shared/data/language-options';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-demo-search-bar',
   imports: [ButtonModule, InputTextModule, ReactiveFormsModule, SelectModule],
   templateUrl: './demo-search-bar.component.html',
@@ -30,14 +27,9 @@ export class DemoSearchBarComponent implements OnInit {
     tag: new FormControl<string | null>(null)
   });
   readonly tags = signal<string[]>([]);
-  readonly languages: LanguageOption[] = [
-    { label: 'Tous les langages', value: '' }, { label: 'Bash', value: 'bash' }, { label: 'CSS', value: 'css' },
-    { label: 'Docker', value: 'docker' }, { label: 'HTTP', value: 'http' }, { label: 'Java', value: 'java' },
-    { label: 'JavaScript', value: 'javascript' }, { label: 'JSON', value: 'json' }, { label: 'SQL', value: 'sql' },
-    { label: 'TypeScript', value: 'typescript' }, { label: 'YAML', value: 'yaml' }
-  ];
+  readonly languages: LanguageOption[] = LANGUAGE_FILTER_OPTIONS;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {
       this.filters.setValue({
         query: params.get('query') ?? '',
@@ -48,12 +40,12 @@ export class DemoSearchBarComponent implements OnInit {
     this.demoSnippetApi.listTags().subscribe({ next: tags => this.tags.set(tags) });
   }
 
-  search(): void {
+  public search(): void {
     const { query, language, tag } = this.filters.getRawValue();
     this.navigate(query.trim(), language, tag);
   }
 
-  reset(): void {
+  public reset(): void {
     this.filters.reset({ query: '', language: '', tag: null });
     this.navigate('', '', null);
   }

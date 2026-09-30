@@ -15,11 +15,11 @@
 </form>
 
 @if (error()) {
-  <p-message severity="error">{{ error() }}</p-message>
+  <app-error-state [message]="error()!" />
 }
 
 @if (loading()) {
-  <div class="loading"><p-progress-spinner ariaLabel="Chargement de vos snippets" /></div>
+  <app-loading-state label="Chargement de vos snippets" />
 } @else if (page(); as snippetPage) {
   @if (snippetPage.content.length) {
     @for (snippet of snippetPage.content; track snippet.id) {

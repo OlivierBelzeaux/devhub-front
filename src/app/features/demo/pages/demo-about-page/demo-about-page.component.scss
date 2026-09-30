@@ -1,0 +1,15 @@
+:host { display: block; }
+.about-page { display: grid; gap: 2rem; }
+.page-header { max-width: 46rem; }
+.page-header h1 { margin: .35rem 0 .75rem; }
+.page-header p { color: var(--p-text-muted-color); font-size: 1.1rem; line-height: 1.6; margin: 0; }
+.eyebrow { color: var(--p-primary-color); font-weight: 700; text-transform: uppercase; }
+.content-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.content-grid p { color: var(--p-text-muted-color); line-height: 1.55; margin: 0 0 1.25rem; }
+.repositories { border-top: 1px solid var(--p-content-border-color); padding-top: 1.5rem; }
+.repositories h2 { margin: 0 0 .5rem; }
+.repositories > p { color: var(--p-text-muted-color); margin: 0; }
+.repository-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.repository-links a { align-items: center; background: var(--p-content-background); border: 1px solid var(--p-content-border-color); border-radius: var(--p-content-border-radius); color: var(--p-primary-color); display: inline-flex; font-weight: 600; gap: .5rem; padding: .75rem 1rem; text-decoration: none; }
+.repository-links a:hover { background: var(--p-primary-50); border-color: var(--p-primary-color); }
+@media (max-width: 40rem) { .content-grid { grid-template-columns: 1fr; } }

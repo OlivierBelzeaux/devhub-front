@@ -1,31 +1,28 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { MessageModule } from 'primeng/message';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectModule } from 'primeng/select';
 import { TextareaModule } from 'primeng/textarea';
 import { SnippetRequest } from '../../../../core/models/snippet.model';
 import { SnippetService } from '../../data-access/snippet.service';
 import { TagService } from '../../data-access/tag.service';
-
-interface LanguageOption {
-  label: string;
-  value: string;
-}
+import { ErrorStateComponent } from '../../../../shared/ui/error-state/error-state.component';
+import { LoadingStateComponent } from '../../../../shared/ui/loading-state/loading-state.component';
+import { LanguageOption, SNIPPET_LANGUAGE_OPTIONS } from '../../../../shared/data/language-options';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AutoCompleteModule,
     ButtonModule,
     CardModule,
+    ErrorStateComponent,
     InputTextModule,
-    MessageModule,
-    ProgressSpinnerModule,
+    LoadingStateComponent,
     ReactiveFormsModule,
     RouterLink,
     SelectModule,
@@ -47,12 +44,7 @@ export class SnippetFormPageComponent implements OnInit {
   public readonly error = signal<string | null>(null);
   public readonly knownTags = signal<string[]>([]);
   public readonly filteredTags = signal<string[]>([]);
-  public readonly languages: LanguageOption[] = [
-    { label: 'Bash', value: 'bash' }, { label: 'CSS', value: 'css' }, { label: 'Docker', value: 'docker' },
-    { label: 'HTTP', value: 'http' }, { label: 'Java', value: 'java' }, { label: 'JavaScript', value: 'javascript' },
-    { label: 'JSON', value: 'json' }, { label: 'SQL', value: 'sql' }, { label: 'TypeScript', value: 'typescript' },
-    { label: 'YAML', value: 'yaml' }
-  ];
+  public readonly languages: LanguageOption[] = SNIPPET_LANGUAGE_OPTIONS;
   public readonly form = new FormGroup({
     title: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.maxLength(255)] }),
     language: new FormControl('', { nonNullable: true, validators: [Validators.required] }),

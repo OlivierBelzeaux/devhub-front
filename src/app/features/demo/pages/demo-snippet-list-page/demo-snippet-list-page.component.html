@@ -1,14 +1,20 @@
 <section>
-  <h1>Explorer la démo</h1>
-  <p>Consultez des snippets de code et des configurations publiés en lecture seule.</p>
+  <div>
+    <h1>Explorer la démo</h1>
+    <p>Consultez des snippets de code et des configurations publiés en lecture seule.</p>
+  </div>
+  <nav aria-label="Découvrir DevHub" class="demo-navigation">
+    <p-button routerLink="/demo/a-propos" label="À propos de DevHub" icon="pi pi-info-circle" severity="secondary" [outlined]="true" />
+    <p-button label="Me contacter" icon="pi pi-envelope" severity="secondary" [outlined]="true" (onClick)="contact.openMailClient()" />
+  </nav>
 </section>
 
 @if (error()) {
-  <p-message severity="error">{{ error() }}</p-message>
+  <app-error-state [message]="error()!" />
 }
 
 @if (loading()) {
-  <div class="loading"><p-progress-spinner ariaLabel="Chargement des snippets" /></div>
+  <app-loading-state label="Chargement des snippets" />
 } @else if (page(); as snippetPage) {
   @if (snippetPage.content.length) {
     @for (snippet of snippetPage.content; track snippet.id) {

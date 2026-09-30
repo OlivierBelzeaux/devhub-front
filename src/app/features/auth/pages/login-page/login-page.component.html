@@ -5,7 +5,7 @@
 
 <p-card class="login-card">
   @if (error()) {
-    <p-message severity="error">{{ error() }}</p-message>
+    <app-error-state [message]="error()!" />
   }
   <form [formGroup]="form" (ngSubmit)="submit()">
     <label for="email">Adresse email</label>

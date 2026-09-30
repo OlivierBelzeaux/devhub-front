@@ -1,32 +1,29 @@
-import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { MessageModule } from 'primeng/message';
 import { PaginatorModule } from 'primeng/paginator';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectModule } from 'primeng/select';
 import { SnippetPage, SnippetQuery } from '../../../../core/models/snippet.model';
 import { SnippetCardComponent } from '../../../demo/ui/snippet-card/snippet-card.component';
 import { SnippetService } from '../../data-access/snippet.service';
 import { TagService } from '../../data-access/tag.service';
-
-interface LanguageOption {
-  label: string;
-  value: string;
-}
+import { ErrorStateComponent } from '../../../../shared/ui/error-state/error-state.component';
+import { LoadingStateComponent } from '../../../../shared/ui/loading-state/loading-state.component';
+import { LANGUAGE_FILTER_OPTIONS, LanguageOption } from '../../../../shared/data/language-options';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ButtonModule,
     CardModule,
+    ErrorStateComponent,
     InputTextModule,
-    MessageModule,
+    LoadingStateComponent,
     PaginatorModule,
-    ProgressSpinnerModule,
     ReactiveFormsModule,
     RouterLink,
     SelectModule,
@@ -53,12 +50,7 @@ export class SnippetListPageComponent implements OnInit {
   public readonly tags = signal<string[]>([]);
   public readonly loading = signal(false);
   public readonly error = signal<string | null>(null);
-  public readonly languages: LanguageOption[] = [
-    { label: 'Tous les langages', value: '' }, { label: 'Bash', value: 'bash' }, { label: 'CSS', value: 'css' },
-    { label: 'Docker', value: 'docker' }, { label: 'HTTP', value: 'http' }, { label: 'Java', value: 'java' },
-    { label: 'JavaScript', value: 'javascript' }, { label: 'JSON', value: 'json' }, { label: 'SQL', value: 'sql' },
-    { label: 'TypeScript', value: 'typescript' }, { label: 'YAML', value: 'yaml' }
-  ];
+  public readonly languages: LanguageOption[] = LANGUAGE_FILTER_OPTIONS;
 
   public ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(params => {

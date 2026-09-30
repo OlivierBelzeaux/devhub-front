@@ -1,9 +1,9 @@
 <p-button routerLink="/demo" label="Retour à la démo" icon="pi pi-arrow-left" severity="secondary" [outlined]="true" />
 
 @if (loading()) {
-  <div class="loading"><p-progress-spinner ariaLabel="Chargement du snippet" /></div>
+  <app-loading-state label="Chargement du snippet" />
 } @else if (error()) {
-  <p-message severity="error">{{ error() }}</p-message>
+  <app-error-state [message]="error()!" />
 } @else if (snippet(); as currentSnippet) {
   <p-card [header]="currentSnippet.title">
     <div class="metadata"><p-tag class="language-tag" [value]="currentSnippet.language.toUpperCase()" /></div>

@@ -6,11 +6,11 @@
 </section>
 
 @if (loading()) {
-  <div class="loading"><p-progress-spinner ariaLabel="Chargement du snippet" /></div>
+  <app-loading-state label="Chargement du snippet" />
 } @else {
   <p-card class="form-card">
     @if (error()) {
-      <p-message severity="error">{{ error() }}</p-message>
+      <app-error-state [message]="error()!" />
     }
 
     <form [formGroup]="form" (ngSubmit)="submit()">

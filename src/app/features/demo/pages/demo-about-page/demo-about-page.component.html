@@ -1,0 +1,29 @@
+<section class="about-page">
+  <header class="page-header">
+    <span class="eyebrow">DevHub</span>
+    <h1>À propos du projet</h1>
+    <p>DevHub est une application personnelle pour centraliser des snippets de code, des configurations et les retrouver rapidement.</p>
+  </header>
+
+  <div class="content-grid">
+    <p-card>
+      <ng-template #title>Une démo publique</ng-template>
+      <p>La démo permet de consulter quelques snippets sans créer de compte. L’espace personnel ajoute l’authentification et la gestion complète de sa bibliothèque.</p>
+      <p-button routerLink="/demo" label="Explorer la démo" icon="pi pi-compass" />
+    </p-card>
+
+    <p-card>
+      <ng-template #title>Une application Angular</ng-template>
+      <p>Le frontend utilise Angular, les signals, les formulaires réactifs et PrimeNG. L’API est développée avec Spring Boot et sécurisée par JWT.</p>
+    </p-card>
+  </div>
+
+  <section class="repositories" aria-labelledby="repositories-title">
+    <h2 id="repositories-title">Code source</h2>
+    <p>Les deux parties du projet sont disponibles publiquement sur GitHub.</p>
+    <div class="repository-links">
+      <a href="https://github.com/OlivierBelzeaux/devhub-front" target="_blank" rel="noopener noreferrer"><i class="pi pi-github" aria-hidden="true"></i>Frontend Angular<i class="pi pi-external-link" aria-hidden="true"></i></a>
+      <a href="https://github.com/OlivierBelzeaux/devhub-back" target="_blank" rel="noopener noreferrer"><i class="pi pi-github" aria-hidden="true"></i>Backend Spring Boot<i class="pi pi-external-link" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</section>

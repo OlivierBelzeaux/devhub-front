@@ -12,4 +12,3 @@ input, p-autocomplete, p-select, textarea { width: 100%; }
 textarea { font-family: 'JetBrains Mono', monospace; resize: vertical; }
 .field-error { color: var(--p-red-500); }
 .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .25rem; }
-.loading { display: flex; justify-content: center; padding: 3rem; }

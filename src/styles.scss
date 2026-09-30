@@ -36,14 +36,14 @@ body {
   --p-tag-secondary-color: var(--p-primary-700);
 }
 
-.p-button.p-button-secondary.p-button-outlined:hover {
-  background: color-mix(in srgb, var(--p-primary-500), transparent 92%);
+.p-button.p-button-secondary.p-button-outlined:not(:disabled):hover {
+  background: color-mix(in srgb, var(--p-primary-500), transparent 84%);
   border-color: var(--p-primary-500);
   color: var(--p-primary-700);
 }
 
-.p-button.p-button-secondary.p-button-outlined:active {
-  background: color-mix(in srgb, var(--p-primary-500), transparent 84%);
+.p-button.p-button-secondary.p-button-outlined:not(:disabled):active {
+  background: color-mix(in srgb, var(--p-primary-500), transparent 72%);
 }
 
 html.app-dark {
@@ -57,13 +57,13 @@ html.app-dark {
     --p-tag-secondary-color: var(--p-primary-300);
   }
 
-  .p-button.p-button-secondary.p-button-outlined:hover {
+  .p-button.p-button-secondary.p-button-outlined:not(:disabled):hover {
     background: color-mix(in srgb, var(--p-primary-500), transparent 84%);
     border-color: var(--p-primary-400);
     color: var(--p-primary-200);
   }
 
-  .p-button.p-button-secondary.p-button-outlined:active {
+  .p-button.p-button-secondary.p-button-outlined:not(:disabled):active {
     background: color-mix(in srgb, var(--p-primary-500), transparent 72%);
   }
 }

@@ -2,9 +2,9 @@
 <p-confirmdialog />
 
 @if (loading()) {
-  <div class="loading"><p-progress-spinner ariaLabel="Chargement du snippet" /></div>
+  <app-loading-state label="Chargement du snippet" />
 } @else if (error()) {
-  <p-message severity="error">{{ error() }}</p-message>
+  <app-error-state [message]="error()!" />
 } @else if (snippet(); as currentSnippet) {
   <p-card [header]="currentSnippet.title">
     <div class="metadata"><p-tag class="language-tag" [value]="currentSnippet.language.toUpperCase()" /></div>

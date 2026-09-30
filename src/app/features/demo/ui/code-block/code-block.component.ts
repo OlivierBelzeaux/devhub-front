@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-code-block',
   imports: [ButtonModule],
   templateUrl: './code-block.component.html',
@@ -27,7 +28,7 @@ export class CodeBlockComponent {
     return hasMoreContent ? `${shortenedPreview}\n…` : shortenedPreview;
   });
 
-  async copy(): Promise<void> {
+  public async copy(): Promise<void> {
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(this.code());

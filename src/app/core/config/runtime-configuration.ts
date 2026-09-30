@@ -1,4 +1,5 @@
 interface RuntimeConfiguration {
+  contactEmail?: string;
   primeUiLicenseKey?: string;
 }
 

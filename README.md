@@ -6,9 +6,10 @@ Le frontend consomme l’API Spring Boot du projet DevHub. La démo publique ne 
 
 ## Fonctionnalités actuelles
 
-- Démo publique avec recherche, filtres par langage et tag, et pagination.
-- URL synchronisée avec les filtres de recherche.
-- Consultation détaillée d’un snippet et copie du code dans le presse-papiers.
+- Démo publique avec recherche, filtres par langage et tag, pagination, détail, copie du code et page À propos.
+- Connexion JWT, routes protégées, session et déconnexion.
+- Espace personnel : création, consultation, modification et suppression confirmée des snippets.
+- Tags suggérés dans le formulaire pour réutiliser les libellés existants.
 - Thème clair ou sombre conservé pendant la session du navigateur.
 - Interface construite avec Angular, PrimeNG et SCSS.
 
@@ -27,6 +28,12 @@ npm start
 Ouvrir ensuite `http://localhost:4200`.
 
 L’application appelle l’API à l’adresse `http://localhost:8080/api`.
+
+Pour activer le bouton Contact hors Docker, créer `public/runtime-config.js` avec l’adresse publique de contact :
+
+```js
+window.__DEVHUB_RUNTIME_CONFIGURATION__ = { contactEmail: 'you@example.com' };
+```
 
 ## Démarrage avec Docker
 
@@ -49,12 +56,16 @@ npm test
 
 ```text
 src/app/
-├── core/                 # Configuration API et thème
+├── core/                 # Configuration API, authentification et thème
+├── features/auth/        # Connexion
 ├── features/demo/
 │   ├── data-access/      # Client HTTP de la démo
 │   ├── pages/            # Pages routées
 │   └── ui/               # Composants de présentation réutilisables
+├── features/snippets/    # Espace personnel et CRUD des snippets
+├── shared/ui/            # États de chargement et d'erreur réutilisables
 └── app.*                 # Shell, navigation et routes
 ```
 
 Chaque composant possède ses fichiers TypeScript, HTML et SCSS dans son propre dossier.
+Tous les composants utilisent `ChangeDetectionStrategy.OnPush`. L’application s’appuie sur les signals, les inputs signal et les formulaires réactifs pour mettre à jour l’interface de manière ciblée.

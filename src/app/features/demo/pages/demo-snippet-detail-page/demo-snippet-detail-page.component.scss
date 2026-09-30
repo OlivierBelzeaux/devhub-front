@@ -3,12 +3,6 @@
   gap: 1rem;
 }
 
-.loading {
-  display: flex;
-  justify-content: center;
-  padding: 3rem;
-}
-
 .metadata { margin-bottom: 1rem; }
 .description { margin: 0; }
 .description + app-code-block { margin-top: 1rem; }

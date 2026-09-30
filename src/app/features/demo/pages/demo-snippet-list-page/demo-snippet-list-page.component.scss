@@ -4,6 +4,12 @@
 }
 
 section {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+
   h1 {
     margin: 0 0 .5rem;
   }
@@ -13,8 +19,15 @@ section {
   }
 }
 
-.loading {
+.demo-navigation {
   display: flex;
-  justify-content: center;
-  padding: 3rem;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+@media (max-width: 40rem) {
+  section {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
