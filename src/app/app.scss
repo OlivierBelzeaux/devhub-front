@@ -2,6 +2,7 @@
 .brand { color: var(--p-primary-color); font-size: 1.25rem; font-weight: 700; text-decoration: none; }
 .application-content { display: grid; gap: 2rem; margin: 2rem auto; max-width: 70rem; padding: 0 1rem; }
 .toolbar-actions { align-items: center; display: flex; flex-wrap: wrap; gap: .5rem; }
+.current-user { align-items: center; display: inline-flex; gap: .4rem; padding: 0 .25rem; }
 
 @media (max-width: 40rem) {
   .application-content { margin-top: 1.5rem; }

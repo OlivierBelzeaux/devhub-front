@@ -1,10 +1,14 @@
 <p-toolbar>
   <ng-template #start>
-    <a routerLink="/demo" class="brand">Snippet Library</a>
+    <a [routerLink]="auth.isAuthenticated() ? '/snippets' : '/demo'" class="brand">Snippet Library</a>
   </ng-template>
   <ng-template #end>
     <div class="toolbar-actions">
-      <p-button routerLink="/demo" label="Démo publique" icon="pi pi-compass" severity="secondary" [outlined]="true" />
+      @if (auth.isAuthenticated()) {
+        <p-button routerLink="/snippets" label="Mes snippets" icon="pi pi-book" severity="secondary" [outlined]="true" />
+      } @else {
+        <p-button routerLink="/demo" label="Démo publique" icon="pi pi-compass" severity="secondary" [outlined]="true" />
+      }
       <p-button
         [icon]="theme.isDark() ? 'pi pi-sun' : 'pi pi-moon'"
         [label]="theme.isDark() ? 'Thème clair' : 'Thème sombre'"
@@ -13,12 +17,21 @@
         [outlined]="true"
         (click)="theme.toggle()"
       />
-      <p-button label="Connexion bientôt disponible" icon="pi pi-sign-in" severity="secondary" [outlined]="true" [disabled]="true" />
+      @if (auth.isAuthenticated()) {
+        @if (auth.currentUser(); as user) {
+          <span class="current-user"><i class="pi pi-user" aria-hidden="true"></i>{{ user.email }}</span>
+        }
+        <p-button label="Déconnexion" icon="pi pi-sign-out" severity="secondary" [outlined]="true" (click)="logout()" />
+      } @else {
+        <p-button routerLink="/login" label="Connexion" icon="pi pi-sign-in" severity="secondary" [outlined]="true" />
+      }
     </div>
   </ng-template>
 </p-toolbar>
 
 <main class="application-content">
-  <app-demo-search-bar />
+  @if (showDemoSearch) {
+    <app-demo-search-bar />
+  }
   <router-outlet />
 </main>

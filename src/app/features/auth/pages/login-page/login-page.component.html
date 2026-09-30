@@ -1,0 +1,28 @@
+<section>
+  <h1>Connexion</h1>
+  <p>Connectez-vous pour accéder à votre espace personnel et gérer vos snippets.</p>
+</section>
+
+<p-card class="login-card">
+  @if (error()) {
+    <p-message severity="error">{{ error() }}</p-message>
+  }
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label for="email">Adresse email</label>
+    <input id="email" type="email" pInputText formControlName="email" autocomplete="email" />
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <small class="field-error">Saisissez une adresse email valide.</small>
+    }
+
+    <label for="password">Mot de passe</label>
+    <p-password inputId="password" formControlName="password" [feedback]="false" [toggleMask]="true" [fluid]="true" autocomplete="current-password" />
+    @if (form.controls.password.touched && form.controls.password.invalid) {
+      <small class="field-error">Le mot de passe est obligatoire.</small>
+    }
+
+    <div class="actions">
+      <p-button type="submit" label="Se connecter" icon="pi pi-sign-in" [loading]="loading()" />
+      <p-button routerLink="/demo" type="button" label="Retour à la démo" severity="secondary" [outlined]="true" />
+    </div>
+  </form>
+</p-card>

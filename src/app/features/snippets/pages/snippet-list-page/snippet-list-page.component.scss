@@ -1,0 +1,19 @@
+:host { display: grid; gap: 1.5rem; }
+
+.page-heading { align-items: start; display: flex; gap: 1rem; justify-content: space-between; }
+.page-heading h1 { margin: 0 0 .5rem; }
+.page-heading p, p-card p { margin: 0; }
+
+.search-bar { align-items: center; display: flex; flex-wrap: wrap; gap: .75rem; }
+.search-bar input { flex: 2 1 18rem; }
+.search-bar p-select { flex: 1 1 12rem; min-width: 12rem; }
+.loading { display: flex; justify-content: center; padding: 3rem; }
+
+.metadata { align-items: center; color: var(--p-text-muted-color); display: flex; font-size: .875rem; gap: .5rem; margin-bottom: 1rem; }
+.metadata > span, .tags > span { font-weight: 600; }
+app-code-block { margin-top: 1rem; }
+.tags { align-items: center; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+
+@media (max-width: 40rem) {
+  .page-heading { align-items: stretch; flex-direction: column; }
+}

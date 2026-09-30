@@ -1,0 +1,42 @@
+<section class="page-heading">
+  <div>
+    <h1>Mes snippets</h1>
+    <p>Retrouvez et gérez les snippets enregistrés dans votre espace personnel.</p>
+  </div>
+  <p-button routerLink="/snippets/new" label="Nouveau snippet" icon="pi pi-plus" />
+</section>
+
+<form class="search-bar" [formGroup]="filters" (ngSubmit)="search()">
+  <input aria-label="Rechercher" pInputText formControlName="query" placeholder="Rechercher un snippet…" />
+  <p-select ariaLabel="Filtrer par langage" formControlName="language" [options]="languages" optionLabel="label" optionValue="value" placeholder="Tous les langages" />
+  <p-select ariaLabel="Filtrer par tag" formControlName="tag" [options]="tags()" placeholder="Tous les tags" [showClear]="true" />
+  <p-button type="submit" label="Rechercher" icon="pi pi-search" />
+  <p-button type="button" label="Réinitialiser" severity="secondary" [outlined]="true" (onClick)="reset()" />
+</form>
+
+@if (error()) {
+  <p-message severity="error">{{ error() }}</p-message>
+}
+
+@if (loading()) {
+  <div class="loading"><p-progress-spinner ariaLabel="Chargement de vos snippets" /></div>
+} @else if (page(); as snippetPage) {
+  @if (snippetPage.content.length) {
+    @for (snippet of snippetPage.content; track snippet.id) {
+      <p-card [header]="snippet.title">
+        <div class="metadata"><span>Langage</span><p-tag [value]="snippet.language.toUpperCase()" severity="info" /></div>
+        <p>{{ snippet.description || 'Aucune description.' }}</p>
+        <app-code-block [code]="snippet.content" [previewLines]="3" />
+        @if (snippet.tags.length) {
+          <div class="tags" aria-label="Tags">
+            <span>Tags</span>
+            @for (tag of snippet.tags; track tag) { <p-tag [value]="tag" severity="secondary" /> }
+          </div>
+        }
+      </p-card>
+    }
+    <p-paginator [first]="snippetPage.page * snippetPage.size" [rows]="snippetPage.size" [totalRecords]="snippetPage.totalElements" [rowsPerPageOptions]="[10, 20, 50]" (onPageChange)="changePage($event.page ?? 0, $event.rows ?? snippetPage.size)" />
+  } @else {
+    <p-card><p>Aucun snippet ne correspond aux filtres sélectionnés.</p></p-card>
+  }
+}

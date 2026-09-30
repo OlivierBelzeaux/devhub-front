@@ -27,3 +27,11 @@ export interface SnippetQuery {
   size: number;
   sort: string;
 }
+
+export interface SnippetRequest {
+  title: string;
+  content: string;
+  language: string;
+  description: string | null;
+  tags: string[];
+}
